@@ -1,16 +1,15 @@
 const mysql = require("mysql2");
 const inquirer = require("inquirer");
 const cTable = require("console.table"); // console.table library to show tables in the terminal with a better format
+require("dotenv").config();
 
 // establish database connection
 const db = mysql.createConnection(
   {
     host: "localhost",
-    // MySQL username,
-    user: "root",
-    // MySQL password
-    password: "Xy*Jay-Z-Best",
-    database: "employee_tracker_db",
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
   },
   console.log(`Connected to the employee_tracker_db database.`)
 );
@@ -470,6 +469,7 @@ function updateEmployeeRole() {
   );
 }
 
+// init function
 function init() {
   inquirer
     .prompt([
